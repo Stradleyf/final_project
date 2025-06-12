@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman Game</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f3f4f6;
+      color: #222;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .word-display {
+      font-size: 32px;
+      letter-spacing: 12px;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 18px;
+      width: 40px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    .info {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .guesses {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .end-message {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 30px;
+    }
+
+    #playAgainBtn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hangman</h1>
+
+  <div class="word-display" id="wordDisplay">_ _ _ _ _</div>
+
+  <input type="text" id="letterInput" maxlength="1">
+  <button onclick="submitGuess()">Guess</button>
+
+  <div class="info">
+    Remaining Attempts: <span id="attempts">6</span>
+    <div class="guesses">Wrong Guesses: <span id="wrongGuesses"></span></div>
+  </div>
+
+  <div id="endMessage" class="end-message"></div>
+
+  <button id="playAgainBtn" onclick="startGame()">🔁 Play Again</button>
+
+  <script>
+    const words = ["tiger", "grape", "flame", "lucky", "table", "cloud", "brush"];
+    let targetWord = "";
+    let displayedWord = [];
+    let attemptsLeft = 6;
+    let wrongGuesses = [];
+
+    function startGame() {
+      targetWord = words[Math.floor(Math.random() * words.length)];
+      displayedWord = Array(targetWord.length).fill("_");
+      attemptsLeft = 6;
+      wrongGuesses = [];
+
+      document.getElementById("letterInput").disabled = false;
+      document.getElementById("endMessage").textContent = "";
+      document.getElementById("playAgainBtn").style.display = "none";
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById("wordDisplay").textContent = displayedWord.join(" ");
+      document.getElementById("attempts").textContent = attemptsLeft;
+      document.getElementById("wrongGuesses").textContent = wrongGuesses.join(", ");
+    }
+
+    function submitGuess() {
+      const input = document.getElementById("letterInput");
+      const letter = input.value.toLowerCase();
+
+      if (!letter.match(/[a-z]/i) || letter.length !== 1) {
+        input.value = "";
+        return;
+      }
+
+      if (displayedWord.includes(letter) || wrongGuesses.includes(letter)) {
+        input.value = "";
+        return;
+      }
+
+      if (targetWord.includes(letter)) {
+        for (let i = 0; i < targetWord.length; i++) {
+          if (targetWord[i] === letter) {
+            displayedWord[i] = letter;
+          }
+        }
+      } else {
+        wrongGuesses.push(letter);
+        attemptsLeft--;
+      }
+
+      updateDisplay();
+      input.value = "";
+
+      if (!displayedWord.includes("_")) {
+        document.getElementById("endMessage").textContent = "🎉 You guessed it! The word was: " + targetWord.toUpperCase();
+        document.getElementById("letterInput").disabled = true;
+        document.getElementById("playAgainBtn").style.display = "inline-block";
+      } else if (attemptsLeft === 0) {
+        document.getElementById("endMessage").textContent = "💀 Game Over. The word was: " + targetWord.toUpperCase();
+        document.getElementById("letterInput").disabled = true;
+        document.getElementById("playAgainBtn").style.display = "inline-block";
+      }
+    }
+
+    // Start the game when the page loads
+    startGame();
+  </script>
+
+<div style="margin-top: 40px;">
+  <a href="index.html" style="font-size: 16px;">← Back to Professional Page</a>
+</div>
+
+</body>
+</html>

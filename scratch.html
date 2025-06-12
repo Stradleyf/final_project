@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Scratch Page</title>
+  <link rel="stylesheet" href="../CSS/scratch.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="nav">
+  <a href="index.html">Back to Professional Site</a> | 
+  <a href="#video">Jump to Video</a> | 
+  <a href="app.html">Web App</a>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <h1>My Passion: Basketball</h1>
+  <p>I love Basketball!</p>
+</div>
+
+<!-- Lists -->
+<div class="lists">
+  <h2>Top 3 Things I Love About Basketball</h2>
+  <ol>
+    <li>Watching Games
+      <ul>
+        <li>NBA Playoffs</li>
+        <li>College March Madness</li>
+      </ul>
+    </li>
+    <li>Playing with Friends
+      <ul>
+        <li>Pickup at the gym</li>
+        <li>Church leagues</li>
+      </ul>
+    </li>
+    <li>Analyzing Stats
+      <ul>
+        <li>Player efficiency</li>
+        <li>Shot charts</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<!-- Image -->
+<div class="img-section">
+  <h2>Favorite Player: Draymond Green</h2>
+  <img src="../Images/draymond.webp" alt="draymond Green" width="300">
+</div>
+
+<!-- YouTube Video -->
+<div id="video" class="video">
+  <h2>Inspiration: Warriors Playoff Hype</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/jgrcZd_EzrI" 
+          title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- Tableau Graph -->
+<div class="tableau">
+  <h2>Basketball Stats Visualization</h2>
+
+  <div class='tableauPlaceholder' id='viz1749764211604' style='position: relative'>
+    <noscript>
+      <a href='#'>
+        <img alt='NBA Shot Charts - Regular Season 2018-19'
+             src='https://public.tableau.com/static/images/NB/NBAShotCharts_15795208182820/ShotChart/1_rss.png'
+             style='border: none' />
+      </a>
+    </noscript>
+    <object class='tableauViz' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+      <param name='embed_code_version' value='3' />
+      <param name='site_root' value='' />
+      <param name='name' value='NBAShotCharts_15795208182820/ShotChart' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+      <param name='static_image' value='https://public.tableau.com/static/images/NB/NBAShotCharts_15795208182820/ShotChart/1.png' />
+      <param name='animate_transition' value='yes' />
+      <param name='display_static_image' value='yes' />
+      <param name='display_spinner' value='yes' />
+      <param name='display_overlay' value='yes' />
+      <param name='display_count' value='yes' />
+      <param name='language' value='en-US' />
+    </object>
+  </div>
+
+  <!-- Required JS API loader (this is what you're missing!) -->
+  <script type='text/javascript'>
+    var divElement = document.getElementById('viz1749764211604');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    if (divElement.offsetWidth > 800) {
+      vizElement.style.width = '1200px';
+      vizElement.style.height = '827px';
+    } else if (divElement.offsetWidth > 500) {
+      vizElement.style.width = '100%';
+      vizElement.style.height = '800px';
+    } else {
+      vizElement.style.width = '100%';
+      vizElement.style.height = '1200px';
+    }
+
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  </script>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Return to <a href="#top">Top of Page</a></p>
+</div>
+
+</body>
+</html>
